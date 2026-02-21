@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 21,
+  "projectStateVersion": 23,
   "summary": "Professional website for Casa Di Vida interior decoration and designs company with modern, elegant design featuring multiple gallery sections (residential, commercial, before/after), minimalist layouts, bold typography, full-screen imagery, smooth animations, and redesigned services, portfolio, about, and contact sections",
   "architectural_notes": [
     "Multiple gallery sections organized by project type (residential, commercial, before/after)",
@@ -341,6 +341,46 @@
         "REQ-49"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-audit-the-portfolio-component-s-image-path-construction-logic-to-identify-why-all-120-gallery-images-residential-1-png-through-residential-40-png-commercial-1-png-through-commercial-40-png-before-after-1-png-through-before-after-40-png-are-failing-to-load-from-the-assets-generated-directory",
+      "title": "Audit the Portfolio component's image path construction logic to identify why all 120 gallery images (residential-1.png through residential-40.png, commercial-1.png through commercial-40.png, before-after-1.png through before-after-40.png) are failing to load from the /assets/generated/ directory",
+      "reqIds": [
+        "REQ-52"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-that-all-120-gallery-image-files-physically-exist-in-the-frontend-public-assets-generated-directory-with-exact-filenames-matching-the-expected-pattern-residential-1-png-through-residential-40-png-commercial-1-png-through-commercial-40-png-before-after-1-png-through-before-after-40-png",
+      "title": "Verify that all 120 gallery image files physically exist in the frontend/public/assets/generated directory with exact filenames matching the expected pattern (residential-1.png through residential-40.png, commercial-1.png through commercial-40.png, before-after-1.png through before-after-40.png)",
+      "reqIds": [
+        "REQ-53"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-any-identified-errors-in-the-portfolio-component-s-image-rendering-logic-including-incorrect-array-mapping-off-by-one-errors-in-number-ranges-or-missing-error-boundaries-that-prevent-graceful-fallback",
+      "title": "Fix any identified errors in the Portfolio component's image rendering logic, including incorrect array mapping, off-by-one errors in number ranges, or missing error boundaries that prevent graceful fallback",
+      "reqIds": [
+        "REQ-54"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-the-portfolio-component-s-error-logging-to-capture-and-display-comprehensive-debugging-information-for-each-failed-image-load-including-the-complete-attempted-url-http-status-code-network-error-details-file-existence-check-results-and-any-cors-related-issues",
+      "title": "Enhance the Portfolio component's error logging to capture and display comprehensive debugging information for each failed image load, including the complete attempted URL, HTTP status code, network error details, file existence check results, and any CORS-related issues",
+      "reqIds": [
+        "REQ-55"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-test-image-loading-in-both-development-and-production-builds-to-identify-any-environment-specific-issues-and-ensure-images-load-correctly-in-both-contexts",
+      "title": "Test image loading in both development and production builds to identify any environment-specific issues, and ensure images load correctly in both contexts",
+      "reqIds": [
+        "REQ-57"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -517,6 +557,14 @@
       "summary": "Regenerate any missing, corrupted, or improperly formatted gallery images among the 120 total images, ensuring all images are valid PNG files with appropriate dimensions (minimum 800x600 pixels) and represent high-quality interior design photography",
       "reqIds": [
         "REQ-51"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-43",
+      "summary": "Verify the Vite build configuration and public directory setup to ensure static assets in frontend/public/assets/generated are correctly served at runtime without being transformed, relocated, or bundled incorrectly during the build process",
+      "reqIds": [
+        "REQ-56"
       ],
       "status": "pending"
     }

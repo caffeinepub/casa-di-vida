@@ -1,138 +1,109 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Debug and fix critical image loading failure for all 120 gallery images",
+  "title": "Debug and fix gallery image loading failure across all portfolio sections",
   "requirements": [
     {
-      "id": "REQ-47",
-      "summary": "Audit and verify that all 120 gallery image files exist as valid PNG assets in frontend/public/assets/generated directory with correct filenames",
+      "id": "REQ-52",
+      "summary": "Audit the Portfolio component's image path construction logic to identify why all 120 gallery images are failing to load from the /assets/generated/ directory",
       "acceptanceCriteria": [
-        "All 120 image files exist in frontend/public/assets/generated directory",
-        "All filenames match the expected pattern (residential-1.png to residential-40.png, commercial-1.png to commercial-40.png, before-after-1.png to before-after-40.png)",
-        "All image files are valid PNG format and can be opened",
-        "File sizes are reasonable (not 0 bytes or corrupted)"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/assets/generated/.gitkeep",
-          "operation": "create",
-          "description": "Create placeholder file to ensure the generated directory exists and is tracked by version control. This file can be empty or contain a single newline."
-        }
-      ]
-    },
-    {
-      "id": "REQ-48",
-      "summary": "Fix Portfolio component image path construction to correctly reference all 120 gallery images using absolute path pattern '/assets/generated/{category}-{number}.png'",
-      "acceptanceCriteria": [
-        "Image paths in Portfolio component use correct absolute path format starting with /assets/generated/",
-        "No relative path references (no ./ or ../ prefixes)",
-        "Category names match directory structure exactly (residential, commercial, before-after)",
-        "Number formatting is consistent (1-40, no zero-padding unless directory uses it)",
-        "All 120 images render correctly in the browser without 404 errors"
+        "Image path construction uses correct pattern: /assets/generated/{category}-{number}.png",
+        "Category values map correctly: 'residential', 'commercial', 'before-after'",
+        "Number ranges from 1 to 40 for each category",
+        "No hardcoded or incorrect path prefixes are present"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Portfolio.tsx",
           "operation": "modify",
-          "description": "Fix the image path construction logic to use the correct absolute path pattern '/assets/generated/{category}-{number}.png' where category is 'residential', 'commercial', or 'before-after' and number ranges from 1 to 40. Ensure no relative path prefixes (./ or ../) are used. Update the projectCategories data structure to generate exactly 40 images per category with the correct path format. Verify that the category names in the path match the directory structure exactly (use 'before-after' not 'beforeAfter' in paths)."
+          "description": "Audit and correct the image path construction logic. Verify that the code generates paths matching /assets/generated/{category}-{number}.png for all 120 images (residential-1.png through residential-40.png, commercial-1.png through commercial-40.png, before-after-1.png through before-after-40.png). Review the array mapping and ensure category names match exactly ('residential', 'commercial', 'before-after'). Add console logging to display the constructed paths for debugging."
         }
       ]
     },
     {
-      "id": "REQ-49",
-      "summary": "Enhance error logging in Portfolio component to capture detailed debugging information for each failed image load including complete URL, HTTP status, network errors, and CORS headers",
+      "id": "REQ-53",
+      "summary": "Verify that all 120 gallery image files physically exist in the frontend/public/assets/generated directory with exact filenames matching the expected pattern",
       "acceptanceCriteria": [
-        "Console logs show the exact URL attempted for each failed image",
-        "Error messages include HTTP status codes (404, 403, 500, etc.)",
-        "Network errors are caught and logged with full error details",
-        "CORS-related errors are specifically identified and logged",
-        "Each failed image load includes the image index and category for easy tracking"
+        "All 40 residential images exist with correct filenames",
+        "All 40 commercial images exist with correct filenames",
+        "All 40 before-after images exist with correct filenames",
+        "Files are valid PNG format with readable image data",
+        "Files have appropriate dimensions (minimum 800x600 pixels)"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Portfolio.tsx",
           "operation": "modify",
-          "description": "Add comprehensive error logging to image load handlers. On image error events, log the complete attempted URL, image category, image index, and error details. Implement a fetch-based pre-check that attempts to load each image URL and logs HTTP status codes, network errors, and CORS-related issues. Include detailed console.error statements with structured information (category, index, URL, error type, status code) to facilitate debugging. Ensure error messages are clear and actionable."
+          "description": "Add file existence verification logic that checks for all 120 expected gallery images in frontend/public/assets/generated. Log missing files to the console with their expected paths. Note: The actual asset list shows only 3 before-after images, 3 commercial images, and 35 residential images exist with .dim_1200x800.png suffix, not the plain .png pattern. This discrepancy must be identified and logged as the root cause of the loading failure."
         }
       ]
     },
     {
-      "id": "REQ-50",
-      "summary": "Verify Vite configuration correctly serves static assets from frontend/public directory and that /assets/generated/ path is accessible without transformation during build",
+      "id": "REQ-54",
+      "summary": "Fix any identified errors in the Portfolio component's image rendering logic, including incorrect array mapping, off-by-one errors in number ranges, or missing error boundaries",
       "acceptanceCriteria": [
-        "Static assets in frontend/public are served at root level (public/assets/generated becomes /assets/generated)",
-        "Build process does not rename, move, or hash files in the generated directory",
-        "Assets are accessible in both development and production builds",
-        "No build warnings or errors related to asset handling"
+        "Array mapping correctly iterates through numbers 1-40 for each category",
+        "No off-by-one errors in range calculation",
+        "Error boundaries catch and log individual image failures",
+        "Component renders successfully even if some images fail"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Portfolio.tsx",
+          "operation": "modify",
+          "description": "Fix array mapping to correctly iterate through numbers 1-40 for each category. Correct any off-by-one errors in range calculations (e.g., Array.from({ length: 40 }, (_, i) => i + 1) to generate [1, 2, ..., 40]). Add error boundaries using try-catch or onError handlers on img elements to gracefully handle individual image load failures. Ensure the component renders successfully even when some images are missing. Based on the actual asset list showing images with .dim_1200x800.png suffix, update the image path construction to use the correct filename pattern: /assets/generated/{category}-{number}.dim_1200x800.png."
+        }
+      ]
+    },
+    {
+      "id": "REQ-55",
+      "summary": "Enhance the Portfolio component's error logging to capture and display comprehensive debugging information for each failed image load",
+      "acceptanceCriteria": [
+        "Console logs show attempted URL for each failed image",
+        "HTTP status codes are logged when available",
+        "Network errors display readable error messages",
+        "File existence checks are performed and logged",
+        "CORS headers are logged if present"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Portfolio.tsx",
+          "operation": "modify",
+          "description": "Add comprehensive error logging to the Portfolio component's image elements. Implement onError handlers on img tags that log: (1) the complete attempted URL/path, (2) error event details, (3) a message indicating whether the file exists in the expected location. Add onLoad handlers to log successful loads for comparison. Create a debugging utility that checks the actual asset list against expected paths and logs discrepancies (e.g., expecting /assets/generated/residential-1.png but finding /assets/generated/residential-1.dim_1200x800.png). Log network-level errors if fetch API is used for preloading."
+        }
+      ]
+    },
+    {
+      "id": "REQ-56",
+      "summary": "Verify the Vite build configuration and public directory setup to ensure static assets in frontend/public/assets/generated are correctly served at runtime",
+      "acceptanceCriteria": [
+        "Vite configuration includes correct publicDir setting",
+        "Assets in public directory are served at root level",
+        "No asset bundling plugins interfere with static file serving",
+        "Build process preserves directory structure of public/assets/generated"
       ],
       "file_operations": [
         {
           "path": "frontend/vite.config.ts",
           "operation": "modify",
-          "description": "Review and verify the Vite configuration to ensure that files in frontend/public are served at the root level without transformation. Confirm that the publicDir option is set correctly (or uses the default 'public'). Ensure that assets in public/assets/generated are not being renamed, moved, or hash-suffixed during the build process. If necessary, add explicit configuration to preserve the /assets/generated/ path structure in both development and production builds. Add comments documenting the asset handling strategy."
+          "description": "Review and verify the Vite configuration to ensure publicDir is set correctly (default is 'public'). Confirm that assets in the public directory are served at the root level without transformation. Check that no plugins are interfering with static file serving from public/assets/generated. Add comments documenting the expected behavior: files in public/assets/generated should be accessible at /assets/generated/{filename} at runtime."
         }
       ]
     },
     {
-      "id": "REQ-51",
-      "summary": "Regenerate any missing, corrupted, or improperly formatted gallery images ensuring all 120 images are valid PNG files with minimum 800x600 dimensions representing high-quality interior design photography",
+      "id": "REQ-57",
+      "summary": "Test image loading in both development and production builds to identify any environment-specific issues",
       "acceptanceCriteria": [
-        "All 120 gallery images are regenerated if any are missing or corrupted",
-        "All images are valid PNG format with appropriate file headers",
-        "Images have minimum dimensions of 800x600 pixels",
-        "Images represent diverse interior design styles and spaces as specified in original requirements",
-        "File sizes are reasonable (typically 100KB-2MB per image)"
+        "Images load successfully in development mode",
+        "Images load successfully in production build",
+        "No path resolution differences between environments",
+        "Console shows no 404 errors for image requests"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/utils/imageAudit.ts",
-          "operation": "create",
-          "description": "Create a utility script that audits all 120 gallery images in frontend/public/assets/generated directory. The script should check for file existence, validate PNG format, verify minimum dimensions (800x600), and report any missing or corrupted files. Export a function that returns a detailed audit report including which images need regeneration. This utility can be run during development to identify problematic images. Include instructions in comments on how to trigger image regeneration for identified issues."
-        },
-        {
-          "path": "frontend/public/assets/generated/residential-1.png",
-          "operation": "create",
-          "description": "Ensure this image file exists as a valid PNG with minimum 800x600 dimensions representing a high-quality residential interior design space. If the file is missing or corrupted, it must be regenerated. The image should showcase luxury residential design work."
-        },
-        {
-          "path": "frontend/public/assets/generated/residential-2.png",
-          "operation": "create",
-          "description": "Ensure this image file exists as a valid PNG with minimum 800x600 dimensions representing a high-quality residential interior design space. If the file is missing or corrupted, it must be regenerated."
-        },
-        {
-          "path": "frontend/public/assets/generated/residential-40.png",
-          "operation": "create",
-          "description": "Ensure this image file exists as a valid PNG with minimum 800x600 dimensions representing a high-quality residential interior design space. If the file is missing or corrupted, it must be regenerated. This completes the residential category with 40 total images (residential-1.png through residential-40.png)."
-        },
-        {
-          "path": "frontend/public/assets/generated/commercial-1.png",
-          "operation": "create",
-          "description": "Ensure this image file exists as a valid PNG with minimum 800x600 dimensions representing a high-quality commercial interior design space. If the file is missing or corrupted, it must be regenerated. The image should showcase professional commercial design work."
-        },
-        {
-          "path": "frontend/public/assets/generated/commercial-2.png",
-          "operation": "create",
-          "description": "Ensure this image file exists as a valid PNG with minimum 800x600 dimensions representing a high-quality commercial interior design space. If the file is missing or corrupted, it must be regenerated."
-        },
-        {
-          "path": "frontend/public/assets/generated/commercial-40.png",
-          "operation": "create",
-          "description": "Ensure this image file exists as a valid PNG with minimum 800x600 dimensions representing a high-quality commercial interior design space. If the file is missing or corrupted, it must be regenerated. This completes the commercial category with 40 total images (commercial-1.png through commercial-40.png)."
-        },
-        {
-          "path": "frontend/public/assets/generated/before-after-1.png",
-          "operation": "create",
-          "description": "Ensure this image file exists as a valid PNG with minimum 800x600 dimensions representing a high-quality before-after transformation interior design space. If the file is missing or corrupted, it must be regenerated. The image should showcase dramatic design transformations."
-        },
-        {
-          "path": "frontend/public/assets/generated/before-after-2.png",
-          "operation": "create",
-          "description": "Ensure this image file exists as a valid PNG with minimum 800x600 dimensions representing a high-quality before-after transformation interior design space. If the file is missing or corrupted, it must be regenerated."
-        },
-        {
-          "path": "frontend/public/assets/generated/before-after-40.png",
-          "operation": "create",
-          "description": "Ensure this image file exists as a valid PNG with minimum 800x600 dimensions representing a high-quality before-after transformation interior design space. If the file is missing or corrupted, it must be regenerated. This completes the before-after category with 40 total images (before-after-1.png through before-after-40.png)."
+          "path": "frontend/src/components/Portfolio.tsx",
+          "operation": "modify",
+          "description": "Add environment-aware logging to the Portfolio component that identifies whether the app is running in development or production mode (using import.meta.env.MODE or import.meta.env.PROD). Log the base URL and resolved paths in both environments to identify any path resolution differences. Add a test utility function that attempts to fetch a sample image from each category and logs the HTTP response status. Include instructions in code comments for testing: run 'npm run dev' for development and 'npm run build && npm run preview' for production verification."
         }
       ]
     }

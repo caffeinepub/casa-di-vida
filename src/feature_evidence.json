@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-fix-the-portfolio-component-image-path-construction-to-correctly-reference-all-120-gallery-images-using-the-absolute-path-pattern-assets-generated-category-number-png-where-category-is-residential-commercial-or-before-after-and-number-ranges-from-1-to-40",
-      "featureTitle": "Fix the Portfolio component image path construction to correctly reference all 120 gallery images using the absolute path pattern '/assets/generated/{category}-{number}.png' where category is 'residential', 'commercial', or 'before-after' and number ranges from 1 to 40",
+      "featureId": "feature-audit-the-portfolio-component-s-image-path-construction-logic-to-identify-why-all-120-gallery-images-residential-1-png-through-residential-40-png-commercial-1-png-through-commercial-40-png-before-after-1-png-through-before-after-40-png-are-failing-to-load-from-the-assets-generated-directory",
+      "featureTitle": "Audit the Portfolio component's image path construction logic to identify why all 120 gallery images (residential-1.png through residential-40.png, commercial-1.png through commercial-40.png, before-after-1.png through before-after-40.png) are failing to load from the /assets/generated/ directory",
       "files": [
         "frontend/src/components/Portfolio.tsx"
       ],
@@ -16,13 +16,13 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-48"
+        "REQ-52"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-enhance-error-logging-in-the-portfolio-component-to-capture-and-display-detailed-debugging-information-for-each-failed-image-load-including-the-complete-attempted-url-http-status-code-network-error-details-and-cors-headers-if-applicable",
-      "featureTitle": "Enhance error logging in the Portfolio component to capture and display detailed debugging information for each failed image load, including the complete attempted URL, HTTP status code, network error details, and CORS headers if applicable",
+      "featureId": "feature-verify-that-all-120-gallery-image-files-physically-exist-in-the-frontend-public-assets-generated-directory-with-exact-filenames-matching-the-expected-pattern-residential-1-png-through-residential-40-png-commercial-1-png-through-commercial-40-png-before-after-1-png-through-before-after-40-png",
+      "featureTitle": "Verify that all 120 gallery image files physically exist in the frontend/public/assets/generated directory with exact filenames matching the expected pattern (residential-1.png through residential-40.png, commercial-1.png through commercial-40.png, before-after-1.png through before-after-40.png)",
       "files": [
         "frontend/src/components/Portfolio.tsx"
       ],
@@ -35,7 +35,64 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-49"
+        "REQ-53"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-any-identified-errors-in-the-portfolio-component-s-image-rendering-logic-including-incorrect-array-mapping-off-by-one-errors-in-number-ranges-or-missing-error-boundaries-that-prevent-graceful-fallback",
+      "featureTitle": "Fix any identified errors in the Portfolio component's image rendering logic, including incorrect array mapping, off-by-one errors in number ranges, or missing error boundaries that prevent graceful fallback",
+      "files": [
+        "frontend/src/components/Portfolio.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-54"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-enhance-the-portfolio-component-s-error-logging-to-capture-and-display-comprehensive-debugging-information-for-each-failed-image-load-including-the-complete-attempted-url-http-status-code-network-error-details-file-existence-check-results-and-any-cors-related-issues",
+      "featureTitle": "Enhance the Portfolio component's error logging to capture and display comprehensive debugging information for each failed image load, including the complete attempted URL, HTTP status code, network error details, file existence check results, and any CORS-related issues",
+      "files": [
+        "frontend/src/components/Portfolio.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-55"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-test-image-loading-in-both-development-and-production-builds-to-identify-any-environment-specific-issues-and-ensure-images-load-correctly-in-both-contexts",
+      "featureTitle": "Test image loading in both development and production builds to identify any environment-specific issues, and ensure images load correctly in both contexts",
+      "files": [
+        "frontend/src/components/Portfolio.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-57"
       ],
       "confidence": "high"
     }
