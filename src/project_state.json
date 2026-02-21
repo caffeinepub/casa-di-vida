@@ -1,14 +1,16 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 15,
+  "projectStateVersion": 21,
   "summary": "Professional website for Casa Di Vida interior decoration and designs company with modern, elegant design featuring multiple gallery sections (residential, commercial, before/after), minimalist layouts, bold typography, full-screen imagery, smooth animations, and redesigned services, portfolio, about, and contact sections",
   "architectural_notes": [
     "Multiple gallery sections organized by project type (residential, commercial, before/after)",
     "Modern minimalist design system with bold typography and full-screen imagery",
-    "Smooth scroll animations and transitions for enhanced user experience"
+    "Smooth scroll animations and transitions for enhanced user experience",
+    "Gallery sections being expanded from 20 to 40 images each (total 120 images)",
+    "Commercial gallery images will be completely regenerated with new designs"
   ],
   "known_issues": [
-    "Gallery images not displaying - dark blank spaces appear in all three sections (residential, commercial, before/after) after recent changes"
+    "All 120 gallery images failing to load across all three portfolio sections (residential, commercial, before/after)"
   ],
   "isFixRequest": true,
   "existing_features": [
@@ -275,6 +277,70 @@
         "REQ-36"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-generate-20-additional-residential-interior-design-images-residential-21-png-through-residential-40-png-showing-diverse-home-spaces-including-living-rooms-bedrooms-kitchens-dining-rooms-bathrooms-and-home-offices-with-various-design-styles-to-expand-the-residential-gallery-from-20-to-40-images",
+      "title": "Generate 20 additional residential interior design images (residential-21.png through residential-40.png) showing diverse home spaces including living rooms, bedrooms, kitchens, dining rooms, bathrooms, and home offices with various design styles to expand the residential gallery from 20 to 40 images",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-portfolio-component-to-display-all-40-residential-images-residential-1-png-through-residential-40-png-all-40-commercial-images-commercial-1-png-through-commercial-40-png-and-all-40-before-after-images-before-after-1-png-through-before-after-40-png-in-their-respective-gallery-sections-with-proper-grid-layout",
+      "title": "Update the Portfolio component to display all 40 residential images (residential-1.png through residential-40.png), all 40 commercial images (commercial-1.png through commercial-40.png), and all 40 before/after images (before-after-1.png through before-after-40.png) in their respective gallery sections with proper grid layout",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-gallery-display-issue-where-images-show-as-dark-blank-spaces-by-ensuring-all-image-paths-are-correctly-constructed-and-all-generated-images-are-properly-accessible-in-the-frontend-public-assets-generated-directory",
+      "title": "Fix the gallery display issue where images show as dark blank spaces by ensuring all image paths are correctly constructed and all generated images are properly accessible in the frontend/public/assets/generated directory",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-debug-and-fix-the-critical-image-loading-failure-where-all-120-gallery-images-residential-1-png-through-residential-40-png-commercial-1-png-through-commercial-40-png-before-after-1-png-through-before-after-40-png-are-failing-to-load-in-the-portfolio-component",
+      "title": "Debug and fix the critical image loading failure where all 120 gallery images (residential-1.png through residential-40.png, commercial-1.png through commercial-40.png, before-after-1.png through before-after-40.png) are failing to load in the Portfolio component",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-that-all-120-gallery-image-files-exist-as-static-assets-in-the-frontend-public-assets-generated-directory-with-correct-filenames-residential-1-png-through-residential-40-png-commercial-1-png-through-commercial-40-png-before-after-1-png-through-before-after-40-png",
+      "title": "Verify that all 120 gallery image files exist as static assets in the frontend/public/assets/generated directory with correct filenames (residential-1.png through residential-40.png, commercial-1.png through commercial-40.png, before-after-1.png through before-after-40.png)",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-error-handling-in-the-portfolio-component-to-provide-detailed-console-logging-for-image-loading-failures-including-the-attempted-path-http-status-and-whether-the-file-exists",
+      "title": "Enhance error handling in the Portfolio component to provide detailed console logging for image loading failures, including the attempted path, HTTP status, and whether the file exists",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-portfolio-component-image-path-construction-to-correctly-reference-all-120-gallery-images-using-the-absolute-path-pattern-assets-generated-category-number-png-where-category-is-residential-commercial-or-before-after-and-number-ranges-from-1-to-40",
+      "title": "Fix the Portfolio component image path construction to correctly reference all 120 gallery images using the absolute path pattern '/assets/generated/{category}-{number}.png' where category is 'residential', 'commercial', or 'before-after' and number ranges from 1 to 40",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-error-logging-in-the-portfolio-component-to-capture-and-display-detailed-debugging-information-for-each-failed-image-load-including-the-complete-attempted-url-http-status-code-network-error-details-and-cors-headers-if-applicable",
+      "title": "Enhance error logging in the Portfolio component to capture and display detailed debugging information for each failed image load, including the complete attempted URL, HTTP status code, network error details, and CORS headers if applicable",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -371,6 +437,86 @@
       "summary": "Generate 20 new before/after transformation images showing interior design renovations and makeovers with clear visual contrast between before and after states",
       "reqIds": [
         "REQ-25"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Expand gallery sections to 40 images each by adding 20 additional images to residential, commercial, and before/after sections for 120 total images",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Delete and regenerate all 20 commercial gallery images with completely new designs",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Fix gallery display issue where all images show as dark blank spaces across all three sections",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Generate 20 brand new commercial interior design images (commercial-1.png through commercial-20.png) to completely replace the existing commercial gallery images, showing diverse commercial spaces including restaurants, boutiques, hotels, offices, retail stores, cafes, and hospitality venues with various design approaches",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Generate 20 additional commercial interior design images (commercial-21.png through commercial-40.png) showing diverse commercial spaces including restaurants, boutiques, hotels, offices, retail stores, cafes, and hospitality venues to expand the commercial gallery from 20 to 40 images",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Generate 20 additional before/after transformation images (before-after-21.png through before-after-40.png) showing interior design renovations and makeovers with clear visual contrast between before and after states to expand the before/after gallery from 20 to 40 images",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Fix critical image loading failure where all 120 gallery images (40 residential, 40 commercial, 40 before/after) are failing to load and not displaying in the portfolio sections",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-33",
+      "summary": "Regenerate any missing or corrupted gallery images that are preventing the portfolio from displaying correctly, ensuring all 120 images are valid and accessible",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-34",
+      "summary": "Audit and verify that all 120 gallery image files (residential-1.png through residential-40.png, commercial-1.png through commercial-40.png, before-after-1.png through before-after-40.png) physically exist as static assets in the frontend/public/assets/generated directory with correct filenames and valid image file formats",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-37",
+      "summary": "Verify the Vite/build configuration correctly serves static assets from the frontend/public directory and that the /assets/generated/ path is accessible at runtime without being transformed or relocated during the build process",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-38",
+      "summary": "Regenerate any missing, corrupted, or improperly formatted gallery images among the 120 total images, ensuring all images are valid PNG files with appropriate dimensions (minimum 800x600 pixels) and represent high-quality interior design photography",
+      "reqIds": [
+        "REQ-51"
       ],
       "status": "pending"
     }

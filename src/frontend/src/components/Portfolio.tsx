@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, ImageOff } from 'lucide-react';
 
 type GalleryCategory = 'residential' | 'commercial' | 'before-after';
 
@@ -13,67 +13,107 @@ interface Project {
   category: GalleryCategory;
 }
 
-const projects: Project[] = [
-  // Residential Projects (3 images available)
-  {
-    image: '/assets/generated/residential-1.dim_1200x800.png',
-    title: 'Modern Living Room',
-    description: 'A contemporary living space featuring clean lines, neutral tones, minimalist furniture, and abundant natural light creating an inviting atmosphere.',
-    category: 'residential',
-  },
-  {
-    image: '/assets/generated/residential-2.dim_1200x800.png',
-    title: 'Cozy Bedroom',
-    description: 'A serene bedroom retreat with warm lighting, plush textiles, and elegant decor that promotes rest and tranquility.',
-    category: 'residential',
-  },
-  {
-    image: '/assets/generated/residential-3.dim_1200x800.png',
-    title: 'Contemporary Kitchen',
-    description: 'A functional yet elegant kitchen design with sleek cabinetry, marble countertops, and modern appliances that inspire culinary creativity.',
-    category: 'residential',
-  },
+// Available residential images based on assets
+const residentialImageNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
 
-  // Commercial Projects (3 images available)
-  {
-    image: '/assets/generated/commercial-1.dim_1200x800.png',
-    title: 'Restaurant Interior',
-    description: 'A warm and welcoming dining space with elegant seating, ambient lighting, and sophisticated decor creating the perfect setting for memorable meals.',
-    category: 'commercial',
-  },
-  {
-    image: '/assets/generated/commercial-2.dim_1200x800.png',
-    title: 'Boutique Retail',
-    description: 'A chic boutique with stylish displays, modern fixtures, and inviting shopping environment that showcases products beautifully.',
-    category: 'commercial',
-  },
-  {
-    image: '/assets/generated/commercial-3.dim_1200x800.png',
-    title: 'Luxury Hotel Lobby',
-    description: 'A grand hotel entrance with statement furniture, elegant finishes, and welcoming atmosphere that sets the tone for guest experience.',
-    category: 'commercial',
-  },
+const residentialProjects: Project[] = residentialImageNumbers.map((num, i) => {
+  const titles = [
+    'Modern Living Room', 'Cozy Bedroom', 'Contemporary Kitchen', 'Elegant Dining Room',
+    'Luxurious Bathroom', 'Home Office', 'Living Space', 'Master Bedroom',
+    'Gourmet Kitchen', 'Formal Dining', 'Modern Bathroom', 'Executive Office',
+    'Open Concept Living', 'Guest Bedroom', 'Contemporary Kitchen', 'Elegant Dining',
+    'Spa Bathroom', 'Creative Office', 'Transitional Living', 'Luxury Master Suite',
+    'Elegant Living Room', 'Sophisticated Bedroom', 'Modern Kitchen', 'Stylish Dining Room',
+    'Luxurious Bathroom', 'Contemporary Office', 'Cozy Living Space', 'Master Suite',
+    'Gourmet Kitchen', 'Formal Dining Room'
+  ];
+  
+  const descriptions = [
+    'A contemporary living space featuring clean lines, neutral tones, and abundant natural light.',
+    'A serene bedroom retreat with warm lighting, plush textiles, and elegant decor.',
+    'A functional yet elegant kitchen design with sleek cabinetry and modern appliances.',
+    'An inviting dining area with sophisticated furnishings and ambient lighting.',
+    'A spa-like bathroom with luxury finishes and modern fixtures.',
+    'A productive workspace with built-in storage and natural light.',
+    'A comfortable living area with modern furniture and warm atmosphere.',
+    'An elegant master bedroom with walk-in closet and sitting area.',
+    'A chef-inspired kitchen with island and professional-grade appliances.',
+    'A formal dining space with statement lighting and custom built-ins.',
+    'A contemporary bathroom with freestanding tub and double vanity.',
+    'A sophisticated home office with dark wood and leather accents.',
+    'An open concept space with vaulted ceilings and modern furnishings.',
+    'A coastal-inspired bedroom with soft colors and natural textures.',
+    'A sleek kitchen with waterfall island and pendant lights.',
+    'An elegant dining room with wine storage and display shelving.',
+    'A spa-inspired bathroom with steam shower and natural stone.',
+    'A creative workspace with artistic elements and bright colors.',
+    'A transitional living room blending traditional and modern styles.',
+    'A luxury master suite with bedroom and ensuite bathroom.',
+    'A refined living space with elegant furnishings and sophisticated palette.',
+    'A contemporary bedroom with luxury textiles and modern design.',
+    'A modern kitchen with high-end appliances and sleek cabinetry.',
+    'A stylish dining area with elegant table setting and chandelier.',
+    'A luxurious bathroom with marble finishes and spa-like features.',
+    'A contemporary home office with built-in shelving and natural light.',
+    'A cozy residential space with fireplace and comfortable seating.',
+    'A master bedroom with walk-in closet and sitting area.',
+    'A gourmet kitchen with island and professional appliances.',
+    'A formal dining room with statement lighting and custom built-ins.'
+  ];
 
-  // Before & After Transformations (3 images available)
-  {
-    image: '/assets/generated/before-after-1.dim_1200x800.png',
-    title: 'Living Room Transformation',
-    description: 'From dated and cluttered to modern and serene—witness the dramatic transformation of this family living space.',
+  return {
+    image: `/assets/generated/residential-${num}.dim_1200x800.png`,
+    title: titles[i] || `Residential Project ${num}`,
+    description: descriptions[i] || 'A beautiful residential interior design project.',
+    category: 'residential',
+  };
+});
+
+// Available commercial images based on assets
+const commercialImageNumbers = [1, 2, 3];
+
+const commercialProjects: Project[] = commercialImageNumbers.map((num, i) => {
+  const titles = [
+    'Upscale Restaurant', 'Modern Boutique', 'Luxury Hotel Lobby'
+  ];
+  
+  const descriptions = [
+    'An elegant dining space with sophisticated decor and ambient lighting.',
+    'A chic boutique with stylish displays and modern fixtures.',
+    'A grand hotel entrance with statement furniture and elegant finishes.'
+  ];
+
+  return {
+    image: `/assets/generated/commercial-${num}.dim_1200x800.png`,
+    title: titles[i] || `Commercial Project ${num}`,
+    description: descriptions[i] || 'A sophisticated commercial interior design project.',
+    category: 'commercial',
+  };
+});
+
+// Available before-after images based on assets
+const beforeAfterImageNumbers = [1, 2, 3];
+
+const beforeAfterProjects: Project[] = beforeAfterImageNumbers.map((num, i) => {
+  const titles = [
+    'Living Room Transformation', 'Kitchen Renovation', 'Bedroom Makeover'
+  ];
+  
+  const descriptions = [
+    'From dated and cluttered to modern and serene—a dramatic transformation.',
+    'A complete kitchen overhaul transforming old cabinets into a sleek modern space.',
+    'Transforming a tired bedroom into a serene retreat with fresh design.'
+  ];
+
+  return {
+    image: `/assets/generated/before-after-${num}.dim_1200x800.png`,
+    title: titles[i] || `Before & After Project ${num}`,
+    description: descriptions[i] || 'A dramatic transformation showcasing our design expertise.',
     category: 'before-after',
-  },
-  {
-    image: '/assets/generated/before-after-2.dim_1200x800.png',
-    title: 'Kitchen Renovation',
-    description: 'A complete kitchen overhaul transforming old cabinets and appliances into a sleek modern culinary haven.',
-    category: 'before-after',
-  },
-  {
-    image: '/assets/generated/before-after-3.dim_1200x800.png',
-    title: 'Bedroom Makeover',
-    description: 'Transforming a tired bedroom with dated decor into a serene retreat with fresh design and modern touches.',
-    category: 'before-after',
-  },
-];
+  };
+});
+
+const projects: Project[] = [...residentialProjects, ...commercialProjects, ...beforeAfterProjects];
 
 const categories = [
   { id: 'residential' as GalleryCategory, label: 'Residential' },
@@ -93,25 +133,27 @@ export default function Portfolio() {
   useEffect(() => {
     if (import.meta.env.DEV) {
       const validateImages = async () => {
-        const expectedImages = [
-          ...Array.from({ length: 3 }, (_, i) => `residential-${i + 1}.dim_1200x800.png`),
-          ...Array.from({ length: 3 }, (_, i) => `commercial-${i + 1}.dim_1200x800.png`),
-          ...Array.from({ length: 3 }, (_, i) => `before-after-${i + 1}.dim_1200x800.png`),
-        ];
-
+        const allImagePaths = projects.map(p => p.image);
+        
         console.log('[Portfolio] Starting image validation...');
-        console.log('[Portfolio] Expected images:', expectedImages);
+        console.log(`[Portfolio] Expected ${allImagePaths.length} total images`);
+        console.log(`[Portfolio] Residential: ${residentialProjects.length} images`);
+        console.log(`[Portfolio] Commercial: ${commercialProjects.length} images`);
+        console.log(`[Portfolio] Before & After: ${beforeAfterProjects.length} images`);
 
         const results = await Promise.all(
-          expectedImages.map(async (filename) => {
-            const fullPath = `/assets/generated/${filename}`;
+          allImagePaths.map(async (fullPath) => {
             try {
               const response = await fetch(fullPath, { method: 'HEAD' });
-              console.log(`[Portfolio] ${filename}: ${response.ok ? '✓ Found' : '✗ Not found'} (status: ${response.status})`);
-              return { filename, fullPath, exists: response.ok, status: response.status };
+              if (!response.ok) {
+                console.warn(`[Portfolio] ✗ ${fullPath}: Not found (HTTP ${response.status})`);
+              } else {
+                console.log(`[Portfolio] ✓ ${fullPath}: Found (HTTP ${response.status})`);
+              }
+              return { fullPath, exists: response.ok, status: response.status };
             } catch (error) {
-              console.error(`[Portfolio] ${filename}: ✗ Fetch error`, error);
-              return { filename, fullPath, exists: false, status: 0 };
+              console.error(`[Portfolio] ✗ ${fullPath}: Fetch error`, error);
+              return { fullPath, exists: false, status: 0 };
             }
           })
         );
@@ -120,12 +162,13 @@ export default function Portfolio() {
         const missing = results.filter((r) => !r.exists);
 
         console.log(`[Portfolio] ========================================`);
-        console.log(`[Portfolio] Image validation complete: ${found.length}/${expectedImages.length} images found`);
-        if (found.length > 0) {
-          console.log('[Portfolio] Found images:', found.map((f) => f.filename));
-        }
+        console.log(`[Portfolio] Image validation complete: ${found.length}/${allImagePaths.length} images found`);
+        
         if (missing.length > 0) {
-          console.warn('[Portfolio] Missing images:', missing.map((m) => `${m.filename} (${m.fullPath})`));
+          console.warn(`[Portfolio] Missing ${missing.length} images:`);
+          missing.forEach((m) => {
+            console.warn(`  - ${m.fullPath}`);
+          });
         }
         console.log(`[Portfolio] ========================================`);
       };
@@ -142,6 +185,7 @@ export default function Portfolio() {
       naturalHeight: img.naturalHeight,
       complete: img.complete,
       currentSrc: img.currentSrc,
+      error: 'Image failed to load - file may not exist or path is incorrect'
     });
     setImageErrors((prev) => new Set(prev).add(imagePath));
   };
@@ -198,12 +242,9 @@ export default function Portfolio() {
               <CardContent className="p-0">
                 <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                   {imageErrors.has(project.image) ? (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted text-muted-foreground p-4">
-                      <AlertCircle className="w-12 h-12 mb-2 text-destructive" />
-                      <p className="text-sm text-center font-medium">Image failed to load</p>
-                      <p className="text-xs text-center mt-1 opacity-70">
-                        {project.image.split('/').pop()}
-                      </p>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted text-muted-foreground">
+                      <ImageOff className="w-12 h-12 mb-2 opacity-50" />
+                      <p className="text-sm">Image unavailable</p>
                     </div>
                   ) : (
                     <img
@@ -217,15 +258,30 @@ export default function Portfolio() {
                   )}
                 </div>
                 <div className="p-8">
-                  <h3 className="font-display text-2xl font-semibold text-foreground mb-3">
+                  <h3 className="text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">{project.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {project.description}
+                  </p>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
+
+        {/* Debug info in development */}
+        {import.meta.env.DEV && (
+          <div className="mt-8 p-4 bg-muted rounded-lg text-sm text-muted-foreground">
+            <p className="font-semibold mb-2">Debug Info:</p>
+            <p>Total projects: {projects.length}</p>
+            <p>Residential: {residentialProjects.length} projects</p>
+            <p>Commercial: {commercialProjects.length} projects</p>
+            <p>Before & After: {beforeAfterProjects.length} projects</p>
+            <p>Images loaded: {imageLoaded.size}</p>
+            <p>Images failed: {imageErrors.size}</p>
+          </div>
+        )}
       </div>
     </section>
   );

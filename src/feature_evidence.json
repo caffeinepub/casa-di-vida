@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-debug-and-identify-the-root-cause-of-why-the-60-gallery-images-residential-1-png-through-residential-20-png-commercial-1-png-through-commercial-20-png-before-after-1-png-through-before-after-20-png-are-not-loading-in-the-portfolio-component-examining-image-path-construction-file-existence-checks-and-any-path-resolution-issues",
-      "featureTitle": "Debug and identify the root cause of why the 60 gallery images (residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png) are not loading in the Portfolio component, examining image path construction, file existence checks, and any path resolution issues",
+      "featureId": "feature-fix-the-portfolio-component-image-path-construction-to-correctly-reference-all-120-gallery-images-using-the-absolute-path-pattern-assets-generated-category-number-png-where-category-is-residential-commercial-or-before-after-and-number-ranges-from-1-to-40",
+      "featureTitle": "Fix the Portfolio component image path construction to correctly reference all 120 gallery images using the absolute path pattern '/assets/generated/{category}-{number}.png' where category is 'residential', 'commercial', or 'before-after' and number ranges from 1 to 40",
       "files": [
         "frontend/src/components/Portfolio.tsx"
       ],
@@ -16,13 +16,13 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-33"
+        "REQ-48"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-fix-the-portfolio-component-to-correctly-load-and-display-all-60-gallery-images-from-the-assets-generated-directory-ensuring-proper-path-construction-for-residential-1-png-through-residential-20-png-commercial-1-png-through-commercial-20-png-and-before-after-1-png-through-before-after-20-png",
-      "featureTitle": "Fix the Portfolio component to correctly load and display all 60 gallery images from the /assets/generated/ directory, ensuring proper path construction for residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, and before-after-1.png through before-after-20.png",
+      "featureId": "feature-enhance-error-logging-in-the-portfolio-component-to-capture-and-display-detailed-debugging-information-for-each-failed-image-load-including-the-complete-attempted-url-http-status-code-network-error-details-and-cors-headers-if-applicable",
+      "featureTitle": "Enhance error logging in the Portfolio component to capture and display detailed debugging information for each failed image load, including the complete attempted URL, HTTP status code, network error details, and CORS headers if applicable",
       "files": [
         "frontend/src/components/Portfolio.tsx"
       ],
@@ -35,45 +35,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-34"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-verify-that-all-60-gallery-images-exist-as-static-assets-in-the-frontend-public-assets-generated-directory-with-correct-filenames-and-update-or-regenerate-any-missing-image-files",
-      "featureTitle": "Verify that all 60 gallery images exist as static assets in the frontend/public/assets/generated directory with correct filenames and update or regenerate any missing image files",
-      "files": [
-        "frontend/src/components/Portfolio.tsx"
-      ],
-      "components": [
-        "blob-storage@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-35"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-the-error-handling-and-fallback-behavior-in-the-portfolio-component-is-working-correctly-and-logs-helpful-debugging-information-to-the-console-when-images-fail-to-load",
-      "featureTitle": "Ensure the error handling and fallback behavior in the Portfolio component is working correctly and logs helpful debugging information to the console when images fail to load",
-      "files": [
-        "frontend/src/components/Portfolio.tsx"
-      ],
-      "components": [
-        "blob-storage@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-36"
+        "REQ-49"
       ],
       "confidence": "high"
     }

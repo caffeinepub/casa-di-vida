@@ -1,92 +1,122 @@
 {
   "kind": "build_request",
-  "title": "Fix gallery image loading issue causing blank display",
+  "title": "Debug and fix critical image loading failure for all 120 gallery images",
   "projectName": "Casa Di Vida",
   "priority": "high",
   "requirements": [
     {
-      "id": "REQ-33",
-      "text": "Debug and identify the root cause of why the 60 gallery images (residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png) are not loading in the Portfolio component, examining image path construction, file existence checks, and any path resolution issues",
+      "id": "REQ-47",
+      "text": "Audit and verify that all 120 gallery image files (residential-1.png through residential-40.png, commercial-1.png through commercial-40.png, before-after-1.png through before-after-40.png) physically exist as static assets in the frontend/public/assets/generated directory with correct filenames and valid image file formats",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5",
-          "msg-6",
-          "msg-7"
+          "msg-final"
         ],
         "quotes": [
-          "The gallery is blank!",
-          "Fix the current image loading issue"
+          "All images are unavailable",
+          "Please recheck all the errors, file paths and correct the errors"
         ]
       },
       "acceptanceCriteria": [
-        "Identify specific reason why images are not loading (incorrect paths, missing files, wrong directory structure, or component logic errors)",
-        "Document the exact issue found in the Portfolio component or image file structure"
+        "All 120 image files exist in frontend/public/assets/generated directory",
+        "All filenames match the expected pattern (residential-1.png to residential-40.png, commercial-1.png to commercial-40.png, before-after-1.png to before-after-40.png)",
+        "All image files are valid PNG format and can be opened",
+        "File sizes are reasonable (not 0 bytes or corrupted)"
       ]
     },
     {
-      "id": "REQ-34",
-      "text": "Fix the Portfolio component to correctly load and display all 60 gallery images from the /assets/generated/ directory, ensuring proper path construction for residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, and before-after-1.png through before-after-20.png",
+      "id": "REQ-48",
+      "text": "Fix the Portfolio component image path construction to correctly reference all 120 gallery images using the absolute path pattern '/assets/generated/{category}-{number}.png' where category is 'residential', 'commercial', or 'before-after' and number ranges from 1 to 40",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-7"
+          "msg-final"
         ],
         "quotes": [
-          "Proceed with fixing"
+          "Please recheck all the errors, file paths and correct the errors"
         ]
       },
       "acceptanceCriteria": [
-        "All 20 residential images display correctly in the residential gallery section",
-        "All 20 commercial images display correctly in the commercial gallery section",
-        "All 20 before/after images display correctly in the before/after gallery section",
-        "No blank or dark spaces appear in any gallery section",
-        "Images load without console errors"
+        "Image paths in Portfolio component use correct absolute path format starting with /assets/generated/",
+        "No relative path references (no ./ or ../ prefixes)",
+        "Category names match directory structure exactly (residential, commercial, before-after)",
+        "Number formatting is consistent (1-40, no zero-padding unless directory uses it)",
+        "All 120 images render correctly in the browser without 404 errors"
       ]
     },
     {
-      "id": "REQ-35",
-      "text": "Verify that all 60 gallery images exist as static assets in the frontend/public/assets/generated directory with correct filenames and update or regenerate any missing image files",
+      "id": "REQ-49",
+      "text": "Enhance error logging in the Portfolio component to capture and display detailed debugging information for each failed image load, including the complete attempted URL, HTTP status code, network error details, and CORS headers if applicable",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-7"
+          "msg-final"
+        ],
+        "quotes": [
+          "Please recheck all the errors"
         ]
       },
       "acceptanceCriteria": [
-        "All 60 expected image files exist in frontend/public/assets/generated directory",
-        "Filenames match exactly: residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png",
-        "All images have valid dimensions and content"
+        "Console logs show the exact URL attempted for each failed image",
+        "Error messages include HTTP status codes (404, 403, 500, etc.)",
+        "Network errors are caught and logged with full error details",
+        "CORS-related errors are specifically identified and logged",
+        "Each failed image load includes the image index and category for easy tracking"
       ]
     },
     {
-      "id": "REQ-36",
-      "text": "Ensure the error handling and fallback behavior in the Portfolio component is working correctly and logs helpful debugging information to the console when images fail to load",
+      "id": "REQ-50",
+      "text": "Verify the Vite/build configuration correctly serves static assets from the frontend/public directory and that the /assets/generated/ path is accessible at runtime without being transformed or relocated during the build process",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5",
-          "msg-6"
+          "msg-final"
+        ],
+        "quotes": [
+          "Please recheck all the errors, file paths"
         ]
       },
       "acceptanceCriteria": [
-        "Console logs display clear error messages if images fail to load",
-        "Error handling provides useful debugging information about which specific images are failing",
-        "Fallback behavior prevents completely blank gallery sections"
+        "Static assets in frontend/public are served at root level (public/assets/generated becomes /assets/generated)",
+        "Build process does not rename, move, or hash files in the generated directory",
+        "Assets are accessible in both development and production builds",
+        "No build warnings or errors related to asset handling"
+      ]
+    },
+    {
+      "id": "REQ-51",
+      "text": "Regenerate any missing, corrupted, or improperly formatted gallery images among the 120 total images, ensuring all images are valid PNG files with appropriate dimensions (minimum 800x600 pixels) and represent high-quality interior design photography",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-final"
+        ],
+        "quotes": [
+          "All images are unavailable"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All 120 gallery images are regenerated if any are missing or corrupted",
+        "All images are valid PNG format with appropriate file headers",
+        "Images have minimum dimensions of 800x600 pixels",
+        "Images represent diverse interior design styles and spaces as specified in original requirements",
+        "File sizes are reasonable (typically 100KB-2MB per image)"
       ]
     }
   ],
   "constraints": [
-    "Do not regenerate all 60 gallery images unless absolutely necessary",
-    "Preserve existing Portfolio component structure and filtering functionality",
-    "Maintain the three gallery categories (residential, commercial, before/after)",
-    "Keep the existing image filenames and numbering scheme (1-20 for each category)"
+    "Do not change the backend Motoko actor or contact form storage logic",
+    "Maintain the existing three-category gallery structure (residential, commercial, before-after)",
+    "Preserve all existing Portfolio component functionality including filtering and animations",
+    "Keep image files in frontend/public/assets/generated directory",
+    "Use PNG format for all gallery images"
   ],
   "nonGoals": [
-    "Changing the gallery layout or design",
-    "Modifying the category filtering UI",
-    "Adding new gallery categories or images",
-    "Redesigning the Portfolio component structure"
+    "Adding new gallery categories beyond residential, commercial, and before-after",
+    "Implementing image upload functionality",
+    "Creating an admin interface for managing gallery images",
+    "Adding image optimization or lazy loading beyond what exists",
+    "Changing the number of images per category (keep at 40 each)"
   ],
   "imageRequirements": {
     "required": [],

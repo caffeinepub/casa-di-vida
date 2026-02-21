@@ -1,12 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Fix the Portfolio component to display all 60 gallery images that are currently not loading, causing blank gallery sections.
+**Goal:** Debug and fix the critical image loading failure affecting all 120 gallery images in the Portfolio component.
 
 **Planned changes:**
-- Debug and identify why the 60 gallery images (residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png) are not loading
-- Fix the Portfolio component's image path construction to correctly load images from /assets/generated/ directory
-- Verify all 60 image files exist in frontend/public/assets/generated with correct filenames
-- Improve error handling and console logging to provide debugging information for image loading failures
+- Audit all 120 gallery image files (residential-1 through residential-40, commercial-1 through commercial-40, before-after-1 through before-after-40) to verify they exist in frontend/public/assets/generated with correct filenames and valid PNG format
+- Fix Portfolio component image path construction to use correct absolute path pattern '/assets/generated/{category}-{number}.png'
+- Add detailed error logging to capture complete URLs, HTTP status codes, network errors, and CORS information for failed image loads
+- Verify Vite/build configuration correctly serves static assets from frontend/public without transformation
+- Regenerate any missing, corrupted, or improperly formatted gallery images as valid PNG files with minimum 800x600 pixel dimensions
 
-**User-visible outcome:** All three gallery sections (residential, commercial, before/after) display their respective images correctly without blank spaces or loading errors.
+**User-visible outcome:** All 120 gallery images will load correctly in the Portfolio section without 404 errors, displaying diverse interior design photography across residential, commercial, and before-after categories.
