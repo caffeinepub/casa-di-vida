@@ -1,12 +1,12 @@
 {
   "kind": "build_request",
-  "title": "Fix gallery image display issue - dark blank spaces in all sections",
+  "title": "Fix gallery image loading issue causing blank display",
   "projectName": "Casa Di Vida",
   "priority": "high",
   "requirements": [
     {
-      "id": "REQ-30",
-      "text": "Fix the Portfolio component image paths to correctly reference all 60 gallery images from the /assets/generated/ directory, ensuring residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, and before-after-1.png through before-after-20.png are properly loaded",
+      "id": "REQ-33",
+      "text": "Debug and identify the root cause of why the 60 gallery images (residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png) are not loading in the Portfolio component, examining image path construction, file existence checks, and any path resolution issues",
       "target": "frontend",
       "source": {
         "messageIds": [
@@ -15,65 +15,78 @@
           "msg-7"
         ],
         "quotes": [
-          "All sections. Dark Blank spaces. And after the recent changes",
-          "all three gallery sections (residential, commercial, and before/after) are showing dark blank spaces instead of images"
+          "The gallery is blank!",
+          "Fix the current image loading issue"
         ]
       },
       "acceptanceCriteria": [
-        "All 20 residential project images display correctly in the residential gallery tab",
-        "All 20 commercial project images display correctly in the commercial gallery tab",
-        "All 20 before/after images display correctly in the before/after gallery tab",
-        "No dark blank spaces appear in any gallery section",
-        "Image paths use the correct /assets/generated/ directory structure"
+        "Identify specific reason why images are not loading (incorrect paths, missing files, wrong directory structure, or component logic errors)",
+        "Document the exact issue found in the Portfolio component or image file structure"
       ]
     },
     {
-      "id": "REQ-31",
-      "text": "Add error handling and fallback behavior to the Portfolio component to display placeholder content or error messages when gallery images fail to load, and log image loading errors to the browser console for debugging",
+      "id": "REQ-34",
+      "text": "Fix the Portfolio component to correctly load and display all 60 gallery images from the /assets/generated/ directory, ensuring proper path construction for residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, and before-after-1.png through before-after-20.png",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-6"
+          "msg-7"
         ],
         "quotes": [
-          "Adding error handling so we can see if images are failing to load"
+          "Proceed with fixing"
         ]
       },
       "acceptanceCriteria": [
-        "Browser console logs clear error messages when images fail to load",
-        "Failed images show a graceful fallback UI instead of blank spaces",
-        "Error messages indicate which specific image file failed to load"
+        "All 20 residential images display correctly in the residential gallery section",
+        "All 20 commercial images display correctly in the commercial gallery section",
+        "All 20 before/after images display correctly in the before/after gallery section",
+        "No blank or dark spaces appear in any gallery section",
+        "Images load without console errors"
       ]
     },
     {
-      "id": "REQ-32",
-      "text": "Verify and ensure all 60 gallery images (residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png) are properly rendered as static assets in the frontend/public/assets/generated directory with correct filenames and dimensions",
+      "id": "REQ-35",
+      "text": "Verify that all 60 gallery images exist as static assets in the frontend/public/assets/generated directory with correct filenames and update or regenerate any missing image files",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Ensuring all 60 images are properly rendered as static assets"
+          "msg-7"
         ]
       },
       "acceptanceCriteria": [
-        "All 60 image files exist in frontend/public/assets/generated directory",
-        "Image filenames match the exact naming convention used in the Portfolio component",
-        "All images are accessible via browser when navigating directly to their URLs"
+        "All 60 expected image files exist in frontend/public/assets/generated directory",
+        "Filenames match exactly: residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png",
+        "All images have valid dimensions and content"
+      ]
+    },
+    {
+      "id": "REQ-36",
+      "text": "Ensure the error handling and fallback behavior in the Portfolio component is working correctly and logs helpful debugging information to the console when images fail to load",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5",
+          "msg-6"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Console logs display clear error messages if images fail to load",
+        "Error handling provides useful debugging information about which specific images are failing",
+        "Fallback behavior prevents completely blank gallery sections"
       ]
     }
   ],
   "constraints": [
-    "Do not modify the useInternetIdentity.ts, useInternetIdentity.tsx, useActor.ts, main.tsx, or frontend/src/components/ui files",
-    "Maintain all existing Portfolio component functionality including the three-tab filtering system",
-    "Preserve all existing image descriptions and project information in the Portfolio component"
+    "Do not regenerate all 60 gallery images unless absolutely necessary",
+    "Preserve existing Portfolio component structure and filtering functionality",
+    "Maintain the three gallery categories (residential, commercial, before/after)",
+    "Keep the existing image filenames and numbering scheme (1-20 for each category)"
   ],
   "nonGoals": [
-    "Creating new gallery images or generating replacement images",
-    "Redesigning the Portfolio component layout or styling",
-    "Adding new gallery categories beyond residential, commercial, and before/after",
-    "Modifying the backend contact form functionality"
+    "Changing the gallery layout or design",
+    "Modifying the category filtering UI",
+    "Adding new gallery categories or images",
+    "Redesigning the Portfolio component structure"
   ],
   "imageRequirements": {
     "required": [],

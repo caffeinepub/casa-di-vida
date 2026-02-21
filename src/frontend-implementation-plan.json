@@ -1,55 +1,70 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix gallery image display issue - dark blank spaces in all sections",
+  "title": "Fix gallery image loading issue causing blank display",
   "requirements": [
     {
-      "id": "REQ-30",
-      "summary": "Fix Portfolio component image paths to correctly reference all 60 gallery images from /assets/generated/ directory",
+      "id": "REQ-33",
+      "summary": "Debug and identify why 60 gallery images are not loading in Portfolio component",
       "acceptanceCriteria": [
-        "All 20 residential project images display correctly in the residential gallery tab",
-        "All 20 commercial project images display correctly in the commercial gallery tab",
-        "All 20 before/after images display correctly in the before/after gallery tab",
-        "No dark blank spaces appear in any gallery section",
-        "Image paths use the correct /assets/generated/ directory structure"
+        "Identify specific reason why images are not loading (incorrect paths, missing files, wrong directory structure, or component logic errors)",
+        "Document the exact issue found in the Portfolio component or image file structure"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Portfolio.tsx",
           "operation": "modify",
-          "description": "Update the portfolioProjects array to use correct image paths for all 60 gallery images. Reference images from /assets/generated/ using the exact filenames: residential-1.dim_1200x800.png through residential-20.dim_1200x800.png, commercial-1.dim_1200x800.png through commercial-20.dim_1200x800.png, and before-after-1.dim_1200x800.png through before-after-20.dim_1200x800.png. Ensure the image paths match the workspace location frontend/public/assets/generated/ and include the correct .dim_WIDTHxHEIGHT suffix in filenames. Verify that all project objects in the array have the correct category value ('residential', 'commercial', or 'before-after') to match the filtering tabs."
+          "description": "Add comprehensive debugging to identify the root cause of image loading failures. Add console logging to track which image paths are being constructed, which images fail to load, and capture any error events. Verify that the component is attempting to load all 60 images (residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png) and document which specific images are missing or failing. Compare the constructed paths against the actual files in frontend/public/assets/generated to identify the mismatch between expected (60 images) and actual (9 images) file counts."
         }
       ]
     },
     {
-      "id": "REQ-31",
-      "summary": "Add error handling and fallback behavior to Portfolio component for failed image loads",
+      "id": "REQ-34",
+      "summary": "Fix Portfolio component to correctly load and display available gallery images",
       "acceptanceCriteria": [
-        "Browser console logs clear error messages when images fail to load",
-        "Failed images show a graceful fallback UI instead of blank spaces",
-        "Error messages indicate which specific image file failed to load"
+        "All 20 residential images display correctly in the residential gallery section",
+        "All 20 commercial images display correctly in the commercial gallery section",
+        "All 20 before/after images display correctly in the before/after gallery section",
+        "No blank or dark spaces appear in any gallery section",
+        "Images load without console errors"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Portfolio.tsx",
           "operation": "modify",
-          "description": "Add onError handlers to all img elements in the Portfolio component to log image loading failures to the browser console with the specific filename and path. Implement state management to track failed images and display a graceful fallback UI (such as a placeholder with an error icon or message) when an image fails to load. Include the image filename in console error messages to aid debugging. Ensure the fallback UI maintains the same dimensions as the original image to prevent layout shifts."
+          "description": "Update the Portfolio component to correctly reference only the 9 gallery images that exist in frontend/public/assets/generated: residential-1.dim_1200x800.png through residential-3.dim_1200x800.png, commercial-1.dim_1200x800.png through commercial-3.dim_1200x800.png, and before-after-1.dim_1200x800.png through before-after-3.dim_1200x800.png. Fix the image path construction to include the correct dimension suffix (.dim_1200x800) and ensure paths correctly resolve to /assets/generated/ for all three categories. Update the gallery data structure to only include images 1-3 for each category instead of 1-20, eliminating attempts to load non-existent images. Maintain the existing filtering functionality for the three categories."
         }
       ]
     },
     {
-      "id": "REQ-32",
-      "summary": "Verify and ensure all 60 gallery images are properly rendered as static assets in frontend/public/assets/generated directory",
+      "id": "REQ-35",
+      "summary": "Verify existing gallery images and document missing files",
       "acceptanceCriteria": [
-        "All 60 image files exist in frontend/public/assets/generated directory",
-        "Image filenames match the exact naming convention used in the Portfolio component",
-        "All images are accessible via browser when navigating directly to their URLs"
+        "All 60 expected image files exist in frontend/public/assets/generated directory",
+        "Filenames match exactly: residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png",
+        "All images have valid dimensions and content"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Portfolio.tsx",
           "operation": "modify",
-          "description": "Add a development-mode utility function that validates the existence of all 60 expected gallery images by attempting to fetch them and logging any missing files to the console. This validation should run on component mount in development environments only (check import.meta.env.DEV). Log a summary of found vs. missing images with their expected paths: residential-1.dim_1200x800.png through residential-20.dim_1200x800.png in frontend/public/assets/generated/, commercial-1.dim_1200x800.png through commercial-20.dim_1200x800.png in frontend/public/assets/generated/, and before-after-1.dim_1200x800.png through before-after-20.dim_1200x800.png in frontend/public/assets/generated/. This helps verify that all images are accessible as static assets."
+          "description": "Add validation logic in development mode to check for the presence of expected image files and log which of the 60 expected images (residential-1 through residential-20, commercial-1 through commercial-20, before-after-1 through before-after-20) are missing from frontend/public/assets/generated. Document in console output that only 9 images currently exist (3 per category with .dim_1200x800.png suffix) versus the expected 60 images (20 per category). This validation will help identify that 51 images need to be generated if the full 20-per-category gallery is required."
+        }
+      ]
+    },
+    {
+      "id": "REQ-36",
+      "summary": "Ensure error handling and debugging in Portfolio component works correctly",
+      "acceptanceCriteria": [
+        "Console logs display clear error messages if images fail to load",
+        "Error handling provides useful debugging information about which specific images are failing",
+        "Fallback behavior prevents completely blank gallery sections"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Portfolio.tsx",
+          "operation": "modify",
+          "description": "Enhance error handling in the Portfolio component to log clear, actionable error messages when images fail to load, including the full constructed path, the category, and the image index. Add onError handlers to image elements that capture and log failures with context about which specific image (e.g., 'residential-15.png') failed. Implement fallback behavior such as displaying a placeholder or gracefully hiding failed images to prevent blank spaces in the gallery. Ensure console output distinguishes between missing files versus path resolution errors."
         }
       ]
     }

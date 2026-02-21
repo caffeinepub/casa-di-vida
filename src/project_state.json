@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 13,
+  "projectStateVersion": 15,
   "summary": "Professional website for Casa Di Vida interior decoration and designs company with modern, elegant design featuring multiple gallery sections (residential, commercial, before/after), minimalist layouts, bold typography, full-screen imagery, smooth animations, and redesigned services, portfolio, about, and contact sections",
   "architectural_notes": [
     "Multiple gallery sections organized by project type (residential, commercial, before/after)",
@@ -241,6 +241,38 @@
       "title": "Verify and ensure all 60 gallery images (residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png) are properly rendered as static assets in the frontend/public/assets/generated directory with correct filenames and dimensions",
       "reqIds": [
         "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-debug-and-identify-the-root-cause-of-why-the-60-gallery-images-residential-1-png-through-residential-20-png-commercial-1-png-through-commercial-20-png-before-after-1-png-through-before-after-20-png-are-not-loading-in-the-portfolio-component-examining-image-path-construction-file-existence-checks-and-any-path-resolution-issues",
+      "title": "Debug and identify the root cause of why the 60 gallery images (residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png) are not loading in the Portfolio component, examining image path construction, file existence checks, and any path resolution issues",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-portfolio-component-to-correctly-load-and-display-all-60-gallery-images-from-the-assets-generated-directory-ensuring-proper-path-construction-for-residential-1-png-through-residential-20-png-commercial-1-png-through-commercial-20-png-and-before-after-1-png-through-before-after-20-png",
+      "title": "Fix the Portfolio component to correctly load and display all 60 gallery images from the /assets/generated/ directory, ensuring proper path construction for residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, and before-after-1.png through before-after-20.png",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-that-all-60-gallery-images-exist-as-static-assets-in-the-frontend-public-assets-generated-directory-with-correct-filenames-and-update-or-regenerate-any-missing-image-files",
+      "title": "Verify that all 60 gallery images exist as static assets in the frontend/public/assets/generated directory with correct filenames and update or regenerate any missing image files",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-error-handling-and-fallback-behavior-in-the-portfolio-component-is-working-correctly-and-logs-helpful-debugging-information-to-the-console-when-images-fail-to-load",
+      "title": "Ensure the error handling and fallback behavior in the Portfolio component is working correctly and logs helpful debugging information to the console when images fail to load",
+      "reqIds": [
+        "REQ-36"
       ],
       "version": 1
     }

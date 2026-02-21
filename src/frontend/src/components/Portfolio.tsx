@@ -84,6 +84,7 @@ const categories = [
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>('residential');
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
+  const [imageLoaded, setImageLoaded] = useState<Set<string>>(new Set());
   const { ref, isVisible } = useScrollAnimation();
 
   const filteredProjects = projects.filter((project) => project.category === activeCategory);
@@ -98,33 +99,62 @@ export default function Portfolio() {
           ...Array.from({ length: 3 }, (_, i) => `before-after-${i + 1}.dim_1200x800.png`),
         ];
 
+        console.log('[Portfolio] Starting image validation...');
+        console.log('[Portfolio] Expected images:', expectedImages);
+
         const results = await Promise.all(
           expectedImages.map(async (filename) => {
+            const fullPath = `/assets/generated/${filename}`;
             try {
-              const response = await fetch(`/assets/generated/${filename}`, { method: 'HEAD' });
-              return { filename, exists: response.ok };
-            } catch {
-              return { filename, exists: false };
+              const response = await fetch(fullPath, { method: 'HEAD' });
+              console.log(`[Portfolio] ${filename}: ${response.ok ? '✓ Found' : '✗ Not found'} (status: ${response.status})`);
+              return { filename, fullPath, exists: response.ok, status: response.status };
+            } catch (error) {
+              console.error(`[Portfolio] ${filename}: ✗ Fetch error`, error);
+              return { filename, fullPath, exists: false, status: 0 };
             }
           })
         );
 
-        const found = results.filter((r) => r.exists).length;
+        const found = results.filter((r) => r.exists);
         const missing = results.filter((r) => !r.exists);
 
-        console.log(`[Portfolio] Image validation: ${found}/${expectedImages.length} images found`);
-        if (missing.length > 0) {
-          console.warn('[Portfolio] Missing images:', missing.map((m) => m.filename));
+        console.log(`[Portfolio] ========================================`);
+        console.log(`[Portfolio] Image validation complete: ${found.length}/${expectedImages.length} images found`);
+        if (found.length > 0) {
+          console.log('[Portfolio] Found images:', found.map((f) => f.filename));
         }
+        if (missing.length > 0) {
+          console.warn('[Portfolio] Missing images:', missing.map((m) => `${m.filename} (${m.fullPath})`));
+        }
+        console.log(`[Portfolio] ========================================`);
       };
 
       validateImages();
     }
   }, []);
 
-  const handleImageError = (imagePath: string) => {
-    console.error(`[Portfolio] Failed to load image: ${imagePath}`);
+  const handleImageError = (imagePath: string, event: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = event.currentTarget;
+    console.error(`[Portfolio] ✗ Failed to load image:`, {
+      path: imagePath,
+      naturalWidth: img.naturalWidth,
+      naturalHeight: img.naturalHeight,
+      complete: img.complete,
+      currentSrc: img.currentSrc,
+    });
     setImageErrors((prev) => new Set(prev).add(imagePath));
+  };
+
+  const handleImageLoad = (imagePath: string, event: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = event.currentTarget;
+    console.log(`[Portfolio] ✓ Successfully loaded image:`, {
+      path: imagePath,
+      naturalWidth: img.naturalWidth,
+      naturalHeight: img.naturalHeight,
+      currentSrc: img.currentSrc,
+    });
+    setImageLoaded((prev) => new Set(prev).add(imagePath));
   };
 
   return (
@@ -161,8 +191,8 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredProjects.map((project, index) => (
             <Card
-              key={index}
-              className="group overflow-hidden border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-elegant-xl animate-on-scroll"
+              key={`${project.category}-${index}`}
+              className="group overflow-hidden border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-elegant-xl animate-on-scroll visible"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CardContent className="p-0">
@@ -180,7 +210,8 @@ export default function Portfolio() {
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      onError={() => handleImageError(project.image)}
+                      onError={(e) => handleImageError(project.image, e)}
+                      onLoad={(e) => handleImageLoad(project.image, e)}
                       loading="lazy"
                     />
                   )}
