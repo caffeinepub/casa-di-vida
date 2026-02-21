@@ -1,0 +1,350 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 13,
+  "summary": "Professional website for Casa Di Vida interior decoration and designs company with modern, elegant design featuring multiple gallery sections (residential, commercial, before/after), minimalist layouts, bold typography, full-screen imagery, smooth animations, and redesigned services, portfolio, about, and contact sections",
+  "architectural_notes": [
+    "Multiple gallery sections organized by project type (residential, commercial, before/after)",
+    "Modern minimalist design system with bold typography and full-screen imagery",
+    "Smooth scroll animations and transitions for enhanced user experience"
+  ],
+  "known_issues": [
+    "Gallery images not displaying - dark blank spaces appear in all three sections (residential, commercial, before/after) after recent changes"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-a-landing-page-hero-section-with-company-name-casa-di-vida-interior-decoration-and-designs-tagline-highlighting-interior-design-expertise-and-a-clear-call-to-action-button-to-view-portfolio-or-contact",
+      "title": "Create a landing page hero section with company name 'Casa Di Vida Interior Decoration and Designs', tagline highlighting interior design expertise, and a clear call-to-action button to view portfolio or contact",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-services-section-showcasing-interior-decoration-and-design-offerings-with-descriptions-of-services-such-as-space-planning-color-consultation-furniture-selection-and-full-room-design",
+      "title": "Build a services section showcasing interior decoration and design offerings with descriptions of services such as space planning, color consultation, furniture selection, and full room design",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-portfolio-gallery-section-to-display-completed-interior-design-projects-with-project-images-and-brief-descriptions",
+      "title": "Create a portfolio/gallery section to display completed interior design projects with project images and brief descriptions",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-about-section-introducing-casa-di-vida-s-design-philosophy-experience-and-approach-to-interior-decoration",
+      "title": "Build an about section introducing Casa Di Vida's design philosophy, experience, and approach to interior decoration",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-contact-section-with-a-form-for-potential-clients-to-submit-inquiries-including-fields-for-name-email-phone-project-type-and-message",
+      "title": "Create a contact section with a form for potential clients to submit inquiries including fields for name, email, phone, project type, and message",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-navigation-menu-with-links-to-all-major-sections-home-services-portfolio-about-contact-that-remains-accessible-throughout-the-site",
+      "title": "Create a navigation menu with links to all major sections (Home, Services, Portfolio, About, Contact) that remains accessible throughout the site",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-sophisticated-elegant-visual-design-theme-with-warm-inviting-colors-professional-typography-and-layout-patterns-that-reflect-high-end-interior-design-aesthetics",
+      "title": "Apply a sophisticated, elegant visual design theme with warm, inviting colors, professional typography, and layout patterns that reflect high-end interior design aesthetics",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-separate-gallery-sections-for-residential-projects-commercial-projects-and-before-after-transformations-with-filtering-controls-to-switch-between-categories",
+      "title": "Create separate gallery sections for residential projects, commercial projects, and before/after transformations with filtering controls to switch between categories",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-full-screen-hero-section-with-large-background-imagery-and-overlay-text-using-minimalist-layout-principles",
+      "title": "Implement full-screen hero section with large background imagery and overlay text, using minimalist layout principles",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-bold-modern-typography-throughout-all-sections-using-large-font-sizes-for-headings-and-clear-hierarchy-with-the-existing-custom-fonts-playfair-display-cormorant-garamond-inter",
+      "title": "Apply bold, modern typography throughout all sections using large font sizes for headings and clear hierarchy with the existing custom fonts (Playfair Display, Cormorant Garamond, Inter)",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-smooth-scroll-animations-to-all-major-sections-that-trigger-when-sections-enter-the-viewport-including-fade-in-and-slide-up-effects",
+      "title": "Add smooth scroll animations to all major sections that trigger when sections enter the viewport, including fade-in and slide-up effects",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-services-section-with-minimalist-card-layout-increased-whitespace-and-modern-visual-treatment-while-maintaining-the-six-service-offerings",
+      "title": "Redesign Services section with minimalist card layout, increased whitespace, and modern visual treatment while maintaining the six service offerings",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-about-section-with-asymmetric-layout-large-imagery-and-modern-content-presentation-while-preserving-the-design-philosophy-and-core-values-content",
+      "title": "Redesign About section with asymmetric layout, large imagery, and modern content presentation while preserving the design philosophy and core values content",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-contact-section-with-cleaner-form-styling-modern-input-fields-and-enhanced-visual-hierarchy-while-maintaining-all-form-fields-name-email-phone-project-type-message",
+      "title": "Redesign Contact section with cleaner form styling, modern input fields, and enhanced visual hierarchy while maintaining all form fields (name, email, phone, project type, message)",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-navigation-component-with-refined-modern-aesthetic-improved-transparency-effects-and-enhanced-mobile-menu-presentation",
+      "title": "Redesign Navigation component with refined modern aesthetic, improved transparency effects, and enhanced mobile menu presentation",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-generated-gallery-images-as-static-assets-in-frontend-public-assets-generated-directory-for-all-three-gallery-categories-residential-commercial-before-after",
+      "title": "Render generated gallery images as static assets in frontend/public/assets/generated directory for all three gallery categories (residential, commercial, before/after)",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-darker-semi-transparent-overlay-to-the-hero-section-background-to-improve-text-visibility-against-the-bright-background-image",
+      "title": "Add a darker semi-transparent overlay to the hero section background to improve text visibility against the bright background image",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-increase-text-contrast-for-all-hero-section-text-elements-including-the-company-name-tagline-and-call-to-action-buttons-to-ensure-maximum-readability",
+      "title": "Increase text contrast for all hero section text elements including the company name, tagline, and call-to-action buttons to ensure maximum readability",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-darken-the-existing-hero-background-image-to-reduce-overall-brightness-and-improve-text-visibility",
+      "title": "Darken the existing hero background image to reduce overall brightness and improve text visibility",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-homepage-hero-background-image-with-a-new-attractive-background-image-that-represents-casa-di-vida-s-elegant-interior-design-aesthetic",
+      "title": "Replace the existing homepage hero background image with a new attractive background image that represents Casa Di Vida's elegant interior design aesthetic",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-the-generated-hero-background-image-as-a-static-asset-in-frontend-public-assets-generated-directory-and-update-the-hero-component-to-reference-this-new-image-file",
+      "title": "Render the generated hero background image as a static asset in frontend/public/assets/generated directory and update the Hero component to reference this new image file",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-20-new-residential-interior-design-images-showing-diverse-home-spaces-including-living-rooms-bedrooms-kitchens-dining-rooms-bathrooms-and-home-offices-with-various-design-styles",
+      "title": "Generate 20 new residential interior design images showing diverse home spaces including living rooms, bedrooms, kitchens, dining rooms, bathrooms, and home offices with various design styles",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-swap-the-restaurant-and-boutique-images-in-the-commercial-gallery-section-so-the-restaurant-item-displays-the-current-boutique-image-and-the-boutique-item-displays-the-current-restaurant-image",
+      "title": "Swap the restaurant and boutique images in the commercial gallery section so the restaurant item displays the current boutique image and the boutique item displays the current restaurant image",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-restaurant-gallery-item-description-to-match-the-swapped-boutique-image-and-update-the-boutique-gallery-item-description-to-match-the-swapped-restaurant-image-in-the-commercial-gallery-section",
+      "title": "Update the restaurant gallery item description to match the swapped boutique image and update the boutique gallery item description to match the swapped restaurant image in the commercial gallery section",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-portfolio-component-to-display-all-20-residential-images-all-20-commercial-images-and-all-20-before-after-images-in-their-respective-gallery-sections-with-proper-grid-layout",
+      "title": "Update the Portfolio component to display all 20 residential images, all 20 commercial images, and all 20 before/after images in their respective gallery sections with proper grid layout",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-all-60-generated-gallery-images-as-static-assets-in-the-frontend-public-assets-generated-directory-and-update-the-portfolio-component-to-reference-these-new-image-files",
+      "title": "Render all 60 generated gallery images as static assets in the frontend/public/assets/generated directory and update the Portfolio component to reference these new image files",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-portfolio-component-image-paths-to-correctly-reference-all-60-gallery-images-from-the-assets-generated-directory-ensuring-residential-1-png-through-residential-20-png-commercial-1-png-through-commercial-20-png-and-before-after-1-png-through-before-after-20-png-are-properly-loaded",
+      "title": "Fix the Portfolio component image paths to correctly reference all 60 gallery images from the /assets/generated/ directory, ensuring residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, and before-after-1.png through before-after-20.png are properly loaded",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-error-handling-and-fallback-behavior-to-the-portfolio-component-to-display-placeholder-content-or-error-messages-when-gallery-images-fail-to-load-and-log-image-loading-errors-to-the-browser-console-for-debugging",
+      "title": "Add error handling and fallback behavior to the Portfolio component to display placeholder content or error messages when gallery images fail to load, and log image loading errors to the browser console for debugging",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-and-ensure-all-60-gallery-images-residential-1-png-through-residential-20-png-commercial-1-png-through-commercial-20-png-before-after-1-png-through-before-after-20-png-are-properly-rendered-as-static-assets-in-the-frontend-public-assets-generated-directory-with-correct-filenames-and-dimensions",
+      "title": "Verify and ensure all 60 gallery images (residential-1.png through residential-20.png, commercial-1.png through commercial-20.png, before-after-1.png through before-after-20.png) are properly rendered as static assets in the frontend/public/assets/generated directory with correct filenames and dimensions",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build website for Casa Di Vida interior decoration company with services, portfolio, and contact features",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Implement backend storage for contact form submissions with fields for contact name, email, phone, project type, message, and submission timestamp",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Create multiple separate gallery sections for residential projects, commercial projects, and before/after transformations with filtering and organization capabilities",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Implement modern design elements throughout the site including minimalist layouts, bold typography, full-screen imagery, and smooth scroll animations",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Redesign all existing sections (hero, services, about, contact, navigation) with elevated modern aesthetic",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Improve homepage hero text visibility by adding darker overlay and increasing contrast for all text elements",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Darken hero background image to reduce brightness and improve readability",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Add decorative images and visual elements throughout all sections including section dividers, background patterns, and decorative accents",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Enhance website with visual variety including patterns, textures, gradients, and decorative UI elements to create engaging experience",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add company motto 'Mi Casa su Casa' to the website",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Add 20 images to each gallery section (residential, commercial, before/after) for a total of 60 high-quality interior design images",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Swap restaurant and boutique images in commercial gallery and correct their descriptions to match the swapped images",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Add hotel interior design projects to the commercial gallery section",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Generate 20 new commercial interior design images showing diverse commercial spaces including restaurants, boutiques, hotels, offices, retail stores, cafes, and hospitality venues with various design approaches",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Generate 20 new before/after transformation images showing interior design renovations and makeovers with clear visual contrast between before and after states",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Casa Di Vida",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

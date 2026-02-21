@@ -1,0 +1,57 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix gallery image display issue - dark blank spaces in all sections",
+  "requirements": [
+    {
+      "id": "REQ-30",
+      "summary": "Fix Portfolio component image paths to correctly reference all 60 gallery images from /assets/generated/ directory",
+      "acceptanceCriteria": [
+        "All 20 residential project images display correctly in the residential gallery tab",
+        "All 20 commercial project images display correctly in the commercial gallery tab",
+        "All 20 before/after images display correctly in the before/after gallery tab",
+        "No dark blank spaces appear in any gallery section",
+        "Image paths use the correct /assets/generated/ directory structure"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Portfolio.tsx",
+          "operation": "modify",
+          "description": "Update the portfolioProjects array to use correct image paths for all 60 gallery images. Reference images from /assets/generated/ using the exact filenames: residential-1.dim_1200x800.png through residential-20.dim_1200x800.png, commercial-1.dim_1200x800.png through commercial-20.dim_1200x800.png, and before-after-1.dim_1200x800.png through before-after-20.dim_1200x800.png. Ensure the image paths match the workspace location frontend/public/assets/generated/ and include the correct .dim_WIDTHxHEIGHT suffix in filenames. Verify that all project objects in the array have the correct category value ('residential', 'commercial', or 'before-after') to match the filtering tabs."
+        }
+      ]
+    },
+    {
+      "id": "REQ-31",
+      "summary": "Add error handling and fallback behavior to Portfolio component for failed image loads",
+      "acceptanceCriteria": [
+        "Browser console logs clear error messages when images fail to load",
+        "Failed images show a graceful fallback UI instead of blank spaces",
+        "Error messages indicate which specific image file failed to load"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Portfolio.tsx",
+          "operation": "modify",
+          "description": "Add onError handlers to all img elements in the Portfolio component to log image loading failures to the browser console with the specific filename and path. Implement state management to track failed images and display a graceful fallback UI (such as a placeholder with an error icon or message) when an image fails to load. Include the image filename in console error messages to aid debugging. Ensure the fallback UI maintains the same dimensions as the original image to prevent layout shifts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-32",
+      "summary": "Verify and ensure all 60 gallery images are properly rendered as static assets in frontend/public/assets/generated directory",
+      "acceptanceCriteria": [
+        "All 60 image files exist in frontend/public/assets/generated directory",
+        "Image filenames match the exact naming convention used in the Portfolio component",
+        "All images are accessible via browser when navigating directly to their URLs"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Portfolio.tsx",
+          "operation": "modify",
+          "description": "Add a development-mode utility function that validates the existence of all 60 expected gallery images by attempting to fetch them and logging any missing files to the console. This validation should run on component mount in development environments only (check import.meta.env.DEV). Log a summary of found vs. missing images with their expected paths: residential-1.dim_1200x800.png through residential-20.dim_1200x800.png in frontend/public/assets/generated/, commercial-1.dim_1200x800.png through commercial-20.dim_1200x800.png in frontend/public/assets/generated/, and before-after-1.dim_1200x800.png through before-after-20.dim_1200x800.png in frontend/public/assets/generated/. This helps verify that all images are accessible as static assets."
+        }
+      ]
+    }
+  ]
+}

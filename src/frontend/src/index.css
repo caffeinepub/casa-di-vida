@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.5rem;
+        /* Warm, sophisticated palette for luxury interior design */
+        --background: 0.98 0.01 40;
+        --foreground: 0.25 0.02 30;
+        --card: 1 0 0;
+        --card-foreground: 0.25 0.02 30;
+        --popover: 1 0 0;
+        --popover-foreground: 0.25 0.02 30;
+        /* Rich, warm brown as primary */
+        --primary: 0.35 0.08 35;
+        --primary-foreground: 0.98 0.01 40;
+        /* Soft cream as secondary */
+        --secondary: 0.95 0.02 50;
+        --secondary-foreground: 0.25 0.02 30;
+        --muted: 0.93 0.02 45;
+        --muted-foreground: 0.50 0.02 30;
+        /* Warm terracotta accent */
+        --accent: 0.65 0.15 25;
+        --accent-foreground: 0.98 0.01 40;
+        --destructive: 0.577 0.245 27.325;
+        --destructive-foreground: 0.98 0.01 40;
+        --border: 0.88 0.02 40;
+        --input: 0.88 0.02 40;
+        --ring: 0.35 0.08 35;
+        --chart-1: 0.65 0.15 25;
+        --chart-2: 0.55 0.12 45;
+        --chart-3: 0.45 0.10 60;
+        --chart-4: 0.70 0.18 20;
+        --chart-5: 0.60 0.14 35;
+    }
+
+    .dark {
+        --background: 0.18 0.02 30;
+        --foreground: 0.95 0.02 50;
+        --card: 0.22 0.02 30;
+        --card-foreground: 0.95 0.02 50;
+        --popover: 0.22 0.02 30;
+        --popover-foreground: 0.95 0.02 50;
+        --primary: 0.75 0.12 35;
+        --primary-foreground: 0.18 0.02 30;
+        --secondary: 0.28 0.03 35;
+        --secondary-foreground: 0.95 0.02 50;
+        --muted: 0.28 0.03 35;
+        --muted-foreground: 0.65 0.03 40;
+        --accent: 0.70 0.18 25;
+        --accent-foreground: 0.95 0.02 50;
+        --destructive: 0.65 0.22 27;
+        --destructive-foreground: 0.95 0.02 50;
+        --border: 0.32 0.03 35;
+        --input: 0.32 0.03 35;
+        --ring: 0.75 0.12 35;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "kern" 1, "liga" 1;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-display;
+    }
+
+    h1 {
+        @apply text-6xl md:text-7xl lg:text-8xl font-bold;
+    }
+
+    h2 {
+        @apply text-5xl md:text-6xl lg:text-7xl font-bold;
+    }
+
+    h3 {
+        @apply text-3xl md:text-4xl font-semibold;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    /* Scroll animation utilities */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+        .animate-on-scroll {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+    }
+
+    /* Staggered animation delays */
+    .animate-delay-100 {
+        transition-delay: 100ms;
+    }
+
+    .animate-delay-200 {
+        transition-delay: 200ms;
+    }
+
+    .animate-delay-300 {
+        transition-delay: 300ms;
+    }
+
+    .animate-delay-400 {
+        transition-delay: 400ms;
+    }
+}
